@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../index')
 
-const Students = db.define('students', {
+const Student = db.define('student', {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -32,4 +32,4 @@ const Students = db.define('students', {
   }
 })
 
-module.exports = Students
+module.exports = Student

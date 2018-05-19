@@ -1,14 +1,14 @@
 'use strict';
 
 const db = require('../index');
-const Students = require('./students')
-const Campuses = require('./campuses')
+const Student = require('./student')
+const Campus = require('./campus')
 
-Students.belongsTo(Campuses)
-Campuses.hasMany(Students)
+Student.belongsTo(Campus)
+Campus.hasMany(Student)
 
 module.exports = {
   db,
-  Students,
-  Campuses
+  Student,
+  Campus
 }

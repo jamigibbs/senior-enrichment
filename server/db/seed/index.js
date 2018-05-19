@@ -1,16 +1,16 @@
 const chalk = require('chalk');
-const { db, Campuses, Students } = require('../models');
+const { db, Campus, Student } = require('../models');
 const seedData = require('./data.json');
 
 db.sync({force: true})
   .then(() => {
-    return Promise.all(seedData[0].map(campus => Campuses.create(campus)))
+    return Promise.all(seedData[0].map(campus => Campus.create(campus)))
   })
   .then(() => {
     console.log(chalk.green('Campus seed successful!'));
   })
   .then(() => {
-    return Promise.all(seedData[1].map(student => Students.create(student)))
+    return Promise.all(seedData[1].map(student => Student.create(student)))
   })
   .then(() => {
     console.log(chalk.green('Student seed successful!'));
