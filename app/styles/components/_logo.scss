@@ -1,0 +1,15 @@
+.logo {
+  a {
+    font-size: 16px;
+    font-weight: 100;
+    color: $white;
+    text-decoration: none;
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
+    &:active {
+      color: $white
+    }
+  }
+}
