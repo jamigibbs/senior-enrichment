@@ -1,11 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchCampuses } from '../reducers'
+import Title from './Title'
 
-const Campuses = () => {
-  return (
-    <div>
-      <h1>On the campuses page!</h1>
-    </div>
-  )
+export class Campuses extends Component {
+
+  componentDidMount(){
+    this.props.fetchCampuses()
+  }
+
+  render(){
+    const { campuses} = this.props.campuses;
+
+    return (
+      <div><Title id="capuses-title" content="Campus Listingxxx" />
+      <div>
+        <ul>
+          {
+            campuses.map((campus) => {
+              return <li key={campus.id}>{campus.name}</li>
+            })
+          }
+        </ul>
+      </div>
+      </div>
+    )
+  }
 }
 
-export default Campuses;
+const mapStateToProps = (state) => {
+  return {
+    campuses: state.campuses
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchCampuses: () => {
+      dispatch(fetchCampuses())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Campuses);
