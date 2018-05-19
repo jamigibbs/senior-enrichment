@@ -28,4 +28,12 @@ router.post('/', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const campus = await Campus.findById(req.params.id);
+    const updated = await campus.update(req.body);
+    res.json(updated)
+  } catch (err) { next(err) }
+})
+
 module.exports = router
