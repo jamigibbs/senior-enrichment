@@ -36,4 +36,16 @@ router.put('/:id', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    Campus.destroy({
+      where: {
+        id
+      }
+    })
+    res.status(204).end()
+  } catch (err) { next(err) }
+})
+
 module.exports = router
