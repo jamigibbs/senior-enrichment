@@ -36,7 +36,7 @@ router.put('/:id', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
   try {
     Campus.destroy({

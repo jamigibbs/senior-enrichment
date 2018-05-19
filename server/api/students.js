@@ -35,4 +35,16 @@ router.put('/:id', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
+router.delete('/:id', (req, res, next) => {
+  const id = req.params.id;
+  try {
+    Student.destroy({
+      where: {
+        id
+      }
+    })
+    res.status(204).end()
+  } catch (err) { next(err) }
+})
+
 module.exports = router
