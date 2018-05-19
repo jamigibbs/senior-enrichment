@@ -27,4 +27,12 @@ router.post('/', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const student = await Student.findById(req.params.id);
+    const updated = await student.update(req.body);
+    res.json(updated);
+  } catch (err) { next(err) }
+})
+
 module.exports = router
