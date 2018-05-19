@@ -12,9 +12,9 @@ const Students = db.define('students', {
   },
   email: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
-      isEmail: true,
-      allowNull: false
+      isEmail: true
     }
   },
   gpa: {
