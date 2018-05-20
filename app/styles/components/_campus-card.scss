@@ -1,5 +1,13 @@
 .campus-card {
-  border: 1px solid $black;
   margin: 10px;
   text-align: center;
+  background-color: $background-color-light;
+  padding: 10px;
+  position: relative;
+  a {
+    font-size: 18px;
+  }
+  .actions {
+
+  }
 }

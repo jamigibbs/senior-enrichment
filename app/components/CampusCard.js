@@ -5,11 +5,23 @@ const CampusCard = (props) => {
   return (
     <div className="column column-50">
       <div className="campus-card clearfix">
-        <img className="float-left" src={props.campus.imageUrl} height="150" />
-        <a href="#">{props.campus.name}</a>
-        <p>{studentCount} student{studentCount > 1 && 's'}</p>
-        <button type="button" className="button button-outline">Edit Campus</button>
-        <input className="button button-clear" type="submit" value="Delete" />
+        <div className="row">
+
+          <div className="column column-50">
+            <img src={props.campus.imageUrl} />
+          </div>
+
+          <div className="column column-50">
+            <a href="#">{props.campus.name}</a>
+            <p>{studentCount} student{studentCount > 1 && 's'}</p>
+
+            <div className="actions">
+              <button type="button" className="button button-outline">Edit Campus</button>
+              <input className="button button-clear" type="submit" value="Delete" />
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   )
