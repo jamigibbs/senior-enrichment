@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchCampuses } from '../reducers'
 import Title from './Title'
 import CampusCard from './CampusCard'
@@ -24,12 +25,10 @@ export class Campuses extends Component {
           <div className="row">
 
             <div className="column">
-              <button type="button" className="button button-outline float-right">
-                Add Campus
-              </button>
+              <Link className="button button-outline float-right" to="/campuses/add">Add Campus</Link>
             </div>
 
-            {
+            { campuses.length > 0 &&
               campuses.map((campus) => {
                 return <CampusCard key={campus.id} campus={campus} />
               })

@@ -2,6 +2,7 @@ const router = require('express').Router()
 const Campus = require('../db/models/campus')
 const Students = require('../db/models/student')
 
+// api/campuses
 router.get('/', async (req, res, next) => {
   try {
     const campuses = await Campus.findAll({
