@@ -24,6 +24,10 @@ const Student = db.define('student', {
       max: 4.0
     }
   },
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue: 'https://i.imgur.com/nJXHGxP.png'
+  },
   fullName: {
     type: Sequelize.VIRTUAL,
     get () {
