@@ -8,14 +8,12 @@ import Header from './Header'
 
 const Main = () => {
   return (
-    <Router>
-      <div className="container root-container">
-        <Header />
-        <Route exact path="/" component={Home} />
-        <Route path="/campuses" component={Campuses} />
-        <Route path="/students" component={Students} />
-      </div>
-    </Router>
+    <div className="container root-container">
+      <Header />
+      <Route exact path="/" component={Home} />
+      <Route path="/campuses" component={Campuses} />
+      <Route path="/students" component={Students} />
+    </div>
   );
 }
 

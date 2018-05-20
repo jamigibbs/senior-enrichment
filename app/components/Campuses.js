@@ -10,10 +10,9 @@ export class Campuses extends Component {
   }
 
   render(){
-    const { campuses} = this.props.campuses;
-
+    const campuses = this.props.campuses;
     return (
-      <div><Title id="capuses-title" content="Campus Listingxxx" />
+      <div><Title id="capuses-title" content="Campus Listing" />
       <div>
         <ul>
           {
