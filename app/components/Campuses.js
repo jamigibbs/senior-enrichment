@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchCampuses } from '../reducers'
 import Title from './Title'
+import CampusCard from './CampusCard'
 
 export class Campuses extends Component {
 
@@ -12,16 +13,26 @@ export class Campuses extends Component {
   render(){
     const campuses = this.props.campuses;
     return (
-      <div><Title id="capuses-title" content="Campus Listing" />
-      <div>
-        <ul>
-          {
-            campuses.map((campus) => {
-              return <li key={campus.id}>{campus.name}</li>
-            })
-          }
-        </ul>
-      </div>
+      <div id="campuses-all">
+
+        <Title id="capuses-title" content="Campus Listing" />
+
+        <div className="container">
+
+          <button type="button" className="button button-outline float-right">
+            Add Campus
+          </button>
+
+          {campuses.length === 0 && <h3>There are no campuses registered in the database.</h3>}
+
+          <div className="row">
+            {
+              campuses.map((campus) => {
+                return <CampusCard key={campus.id} campus={campus} />
+              })
+            }
+          </div>
+        </div>
       </div>
     )
   }
