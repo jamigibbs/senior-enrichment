@@ -19,13 +19,16 @@ export class Campuses extends Component {
 
         <div className="container">
 
-          <button type="button" className="button button-outline float-right">
-            Add Campus
-          </button>
-
           {campuses.length === 0 && <h3>There are no campuses registered in the database.</h3>}
 
           <div className="row">
+
+            <div className="column">
+              <button type="button" className="button button-outline float-right">
+                Add Campus
+              </button>
+            </div>
+
             {
               campuses.map((campus) => {
                 return <CampusCard key={campus.id} campus={campus} />
