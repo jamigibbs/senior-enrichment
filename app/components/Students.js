@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Loader from 'react-loading'
+import { Link } from 'react-router-dom'
 import { fetchStudents, fetchCampuses } from '../reducers'
 import Title from './Title'
 import StudentCard from './StudentCard'
@@ -26,9 +27,7 @@ export class Students extends Component {
           <div className="row">
 
             <div className="column">
-              <button type="button" className="button button-outline float-right">
-                Add Student
-              </button>
+            <Link className="button button-outline float-right" to="/students/add">Add Student</Link>
             </div>
 
             { campuses.length > 0 &&
