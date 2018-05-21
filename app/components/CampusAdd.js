@@ -57,7 +57,7 @@ export class CampusAdd extends Component {
                   <input value={this.state.name} name="name" id="name" type="text" placeholder="Starfleet Academy" />
 
                   <label htmlFor="description">Description</label>
-                  <input value={this.state.description} name="description" id="description" type="text" placeholder="Startfleet Academy was created in the year 2161, when the United Federation of Planets was founded. The Academy's motto is Ex astris, scientia – From the stars, knowledge." />
+                  <textarea value={this.state.description} name="description" id="description" type="text" placeholder="Startfleet Academy was created in the year 2161, when the United Federation of Planets was founded. The Academy's motto is Ex astris, scientia – From the stars, knowledge." />
 
                   <input className="button-primary" type="submit" value="Send" />
 
