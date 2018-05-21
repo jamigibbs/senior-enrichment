@@ -3,7 +3,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url('/galaxy.jpg') scroll no-repeat center/cover;
   h1 {
     font-size: 5.5rem;
+    color: $white;
+    text-align: center;
+  }
+  .buttons-wrap {
+    text-align: center;
+    .button {
+      &:first-child {
+        margin-right: 1em;
+      }
+    }
   }
 }
