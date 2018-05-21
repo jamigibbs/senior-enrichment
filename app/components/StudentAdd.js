@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Loader from 'react-loading'
-import { postNewStudent, fetchCampuses } from '../reducers/'
 import { Redirect } from 'react-router-dom'
+import { postNewStudent, fetchCampuses } from '../reducers/'
 
 import Title from './Title'
 
@@ -17,8 +17,6 @@ export class StudentAdd extends Component {
       campusId: '',
       redirectToNewPage: false
     }
-    // this.handleChange = this.handleChange.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount(){
@@ -41,9 +39,9 @@ export class StudentAdd extends Component {
       campusId: this.state.campusId
     })
 
-    // this.setState({
-    //   redirectToNewPage: true
-    // })
+    this.setState({
+      redirectToNewPage: true
+    })
 
     console.log('User added!', this.state)
   }
@@ -69,16 +67,16 @@ export class StudentAdd extends Component {
               <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
                 <fieldset>
                   <label htmlFor="firstName">First Name</label>
-                  <input value={this.state.firstName} name="firstName" id="firstName" type="text" />
+                  <input value={this.state.firstName} name="firstName" id="firstName" type="text" required />
 
                   <label htmlFor="lastName">Last Name</label>
-                  <input value={this.state.lastName} name="lastName" id="lastName" type="text" />
+                  <input value={this.state.lastName} name="lastName" id="lastName" type="text" required />
 
                   <label htmlFor="email">Email</label>
-                  <input value={this.state.email} name="email" id="email" type="email" />
+                  <input value={this.state.email} name="email" id="email" type="email" required />
 
                   <label htmlFor="gpa">GPA</label>
-                  <input value={this.state.gpa} name="gpa" id="gpa" type="number" placeholder="1.0" step="0.1" min="0.0" max="4.0" />
+                  <input value={this.state.gpa} name="gpa" id="gpa" type="number" placeholder="1.0" step="0.1" min="0.0" max="4.0" required />
 
                   <label htmlFor="campus">Campus</label>
                   <select value={this.state.campusId} name="campusId">
