@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Loader from 'react-loading'
 import { fetchStudents, fetchCampuses } from '../reducers'
 import Title from './Title'
 import StudentCard from './StudentCard'
@@ -11,7 +12,8 @@ export class Students extends Component {
   }
 
   render(){
-    const { students, campuses } = this.props;
+    const { students, campuses, isFetching } = this.props;
+    if (isFetching) return <Loader className="preloader" type="balls" color="#9b4dca" />
     return (
       <div id="students-all">
 
@@ -44,7 +46,8 @@ export class Students extends Component {
 const mapStateToProps = (state) => {
   return {
     students: state.students,
-    campuses: state.campuses
+    campuses: state.campuses,
+    isFetching: state.isFetching
   }
 }
 

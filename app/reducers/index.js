@@ -5,10 +5,25 @@ import axios from 'axios'
 const GOT_CAMPUSES_FROM_SERVER = 'GOT_CAMPUSES_FROM_SERVER'
 const GOT_STUDENTS_FROM_SERVER = 'GOT_STUDENTS_FROM_SERVER'
 const GOT_NEW_CAMPUS_FROM_SERVER = 'GOT_NEW_CAMPUS_FROM_SERVER'
+const FETCHING_FROM_DB = 'FETCHING_FROM_DB'
+const DONE_FETCHING_FROM_DB = 'DONE_FETCHING_FROM_DB'
 
 const initialState = {
   campuses: [],
-  students: []
+  students: [],
+  isFetching: false
+}
+
+const isFetching = () => {
+  return {
+    type: FETCHING_FROM_DB
+  }
+}
+
+const doneFetching = () => {
+  return {
+    type: DONE_FETCHING_FROM_DB
+  }
 }
 
 export const gotCampusesFromServer = (campuses) => {
@@ -20,9 +35,13 @@ export const gotCampusesFromServer = (campuses) => {
 
 export const fetchCampuses = () => {
   return async (dispatch) => {
+    dispatch(isFetching());
+
     const { data } = await axios.get('/api/campuses');
     const action = gotCampusesFromServer(data);
+
     dispatch(action)
+    dispatch(doneFetching())
   }
 }
 
@@ -35,9 +54,13 @@ export const getStudentsFromServer = (students) => {
 
 export const fetchStudents = () => {
   return async (dispatch) => {
+    dispatch(isFetching())
+
     const { data } = await axios.get('/api/students')
     const action = getStudentsFromServer(data)
+
     dispatch(action)
+    dispatch(doneFetching())
   }
 }
 
@@ -65,6 +88,10 @@ const rootReducer = (state = initialState, action) => {
       return {...state, students: action.students}
     case GOT_NEW_CAMPUS_FROM_SERVER:
       return { ...state, campuses: [ ...state.campuses, action.campus ]}
+    case FETCHING_FROM_DB:
+      return {...state, isFetching: true}
+    case DONE_FETCHING_FROM_DB:
+      return {...state, isFetching: false}
     default:
       return state
   }

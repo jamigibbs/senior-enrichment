@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Loader from 'react-loading'
 import { fetchCampuses } from '../reducers'
 import Title from './Title'
 import CampusCard from './CampusCard'
@@ -12,7 +13,8 @@ export class Campuses extends Component {
   }
 
   render(){
-    const campuses = this.props.campuses;
+    const { campuses, isFetching } = this.props;
+    if (isFetching) return <Loader className="preloader" type="balls" color="#9b4dca" />
     return (
       <div id="campuses-all">
 
@@ -28,7 +30,7 @@ export class Campuses extends Component {
               <Link className="button button-outline float-right" to="/campuses/add">Add Campus</Link>
             </div>
 
-            { campuses.length > 0 &&
+            {
               campuses.map((campus) => {
                 return <CampusCard key={campus.id} campus={campus} />
               })
@@ -42,7 +44,8 @@ export class Campuses extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    campuses: state.campuses
+    campuses: state.campuses,
+    isFetching: state.isFetching
   }
 }
 
