@@ -3,6 +3,7 @@ import StudentDelete from './StudentDelete'
 
 const StudentCard = (props) => {
   const { student, campus } = props
+
   return (
     <div className="column column-50">
       <div className="student-card clearfix">
@@ -16,7 +17,7 @@ const StudentCard = (props) => {
 
             <div className="student-info">
               <h3><a href="#">{student.fullName}</a></h3>
-              <h4><a href="#">{campus.name}</a></h4>
+              { student.campusId && <h4><a href="#">{campus.name}</a></h4> }
             </div>
 
             <div className="actions">

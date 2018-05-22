@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deleteStudent } from '../reducers'
+import { deleteCampus } from '../reducers'
 
-export class StudentDelete extends Component {
+export class CampusDelete extends Component {
   handleClick = () => {
     this.props.delete(this.props.id)
   }
 
   render(){
     return (
-      <div id="student-delete">
+      <div id="campus-delete">
         <input
-          onClick={() => { if (window.confirm('Are you sure you want to delete this student?')) this.handleClick() }}  // eslint-disable-line no-alert
+          onClick={() => { if (window.confirm('Are you sure you want to delete this campus?')) this.handleClick() }}  // eslint-disable-line no-alert
           className="button button-clear"
           type="submit"
           value="Delete"
@@ -24,9 +24,9 @@ export class StudentDelete extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     delete: (id) => {
-      dispatch(deleteStudent(id))
+      dispatch(deleteCampus(id))
     }
   }
 }
 
-export default connect(null, mapDispatchToProps)(StudentDelete);
+export default connect(null, mapDispatchToProps)(CampusDelete);

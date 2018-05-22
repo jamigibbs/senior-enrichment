@@ -32,7 +32,11 @@ export class Students extends Component {
 
             { campuses.length > 0 &&
               students.map((student) => {
-                return <StudentCard key={student.id} student={student} campus={campuses[student.campusId - 1]} />
+                return (<StudentCard
+                  key={student.id}
+                  student={student}
+                  campus={campuses[student.campusId - 1]}
+                />)
               })
             }
           </div>
