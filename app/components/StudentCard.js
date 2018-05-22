@@ -1,4 +1,5 @@
 import React from 'react';
+import StudentDelete from './StudentDelete'
 
 const StudentCard = (props) => {
   const { student, campus } = props
@@ -20,7 +21,7 @@ const StudentCard = (props) => {
 
             <div className="actions">
               <button type="button" className="button button-outline">Edit Student</button>
-              <input className="button button-clear" type="submit" value="Delete" />
+              <StudentDelete id={student.id} />
             </div>
           </div>
 

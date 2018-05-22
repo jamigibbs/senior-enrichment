@@ -6,6 +6,7 @@ const GOT_CAMPUSES_FROM_SERVER = 'GOT_CAMPUSES_FROM_SERVER'
 const GOT_STUDENTS_FROM_SERVER = 'GOT_STUDENTS_FROM_SERVER'
 const GOT_NEW_CAMPUS_FROM_SERVER = 'GOT_NEW_CAMPUS_FROM_SERVER'
 const GOT_NEW_STUDENT_FROM_SERVER = 'GOT_NEW_STUDENT_FROM_SERVER'
+const DELETED_STUDENT_FROM_SERVER = 'DELETED_STUDENT_FROM_SERVER'
 const FETCHING_FROM_DB = 'FETCHING_FROM_DB'
 const DONE_FETCHING_FROM_DB = 'DONE_FETCHING_FROM_DB'
 
@@ -93,6 +94,26 @@ export const postNewStudent = (student) => {
     try {
       const { data } = await axios.post('/api/students', student)
       const action = gotNewStudentFromServer(data);
+      dispatch(action)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+export const deletedStudentFromServer = (id) => {
+  return {
+    type: DELETED_STUDENT_FROM_SERVER,
+    id
+  }
+}
+
+export const deleteStudent = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`/api/students/${id}`)
+      const action = deletedStudentFromServer(id)
+      dispatch(action)
     } catch (err) {
       console.error(err)
     }
@@ -109,6 +130,10 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, campuses: [ ...state.campuses, action.campus ]}
     case GOT_NEW_STUDENT_FROM_SERVER:
       return { ...state, students: [...state.students, action.student]}
+    case DELETED_STUDENT_FROM_SERVER: {
+      const newArr = state.students.filter(student => student.id !== action.id)
+      return {...state, students: newArr}
+    }
     case FETCHING_FROM_DB:
       return {...state, isFetching: true}
     case DONE_FETCHING_FROM_DB:

@@ -42,8 +42,6 @@ export class StudentAdd extends Component {
     this.setState({
       redirectToNewPage: true
     })
-
-    console.log('User added!', this.state)
   }
 
   render(){
@@ -80,6 +78,7 @@ export class StudentAdd extends Component {
 
                   <label htmlFor="campus">Campus</label>
                   <select value={this.state.campusId} name="campusId">
+                    <option value="-">-</option>
                     {
                       campuses.map((campus) => {
                         return <option key={campus.id} value={campus.id}>{campus.name}</option>

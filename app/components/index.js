@@ -2,11 +2,12 @@ import React from 'react'
 import { Route } from 'react-router-dom';
 
 import Home from './Home'
+import Header from './Header'
 import Campuses from './Campuses'
+import CampusAdd from './CampusAdd'
 import Students from './Students'
 import StudentAdd from './StudentAdd'
-import Header from './Header'
-import CampusAdd from './CampusAdd'
+import StudentSingle from './StudentSingle'
 
 const Main = () => {
   return (
@@ -17,6 +18,7 @@ const Main = () => {
       <Route path="/campuses/add" component={CampusAdd} />
       <Route exact path="/students" component={Students} />
       <Route path="/students/add" component={StudentAdd} />
+      <Route path="/students/:id" component={StudentSingle} />
     </div>
   );
 }
