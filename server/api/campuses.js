@@ -19,8 +19,7 @@ router.get('/:id', async (req, res, next) => {
     const campus = await Campus.findOne({
       where: {
         id
-      },
-      include: [{model: Students}]
+      }
     })
     res.json(campus)
   } catch (err) { next(err) }
