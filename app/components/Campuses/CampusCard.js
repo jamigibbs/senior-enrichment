@@ -1,18 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
 import CampusDelete from './CampusDelete'
 
 const CampusCard = (props) => {
   const studentCount = props.campus.students.length;
   const { campus } = props
-
-  const campusPage = {
-    pathname: `/campuses/${campus.id}`,
-    search: '',
-    hash: '',
-    state: { campus }
-  }
-
   return (
     <div className="column column-50">
       <div className="campus-card clearfix">
@@ -23,7 +14,7 @@ const CampusCard = (props) => {
           </div>
 
           <div className="column column-50">
-            <Link to={campusPage}>{campus.name}</Link>
+            <a href="#">{campus.name}</a>
             <p>{studentCount} student{studentCount > 1 && 's'}</p>
 
             <div className="actions">
