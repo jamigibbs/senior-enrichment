@@ -1,8 +1,16 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import StudentDelete from './StudentDelete'
 
 const StudentCard = (props) => {
   const { student, campus } = props
+
+  const studentPage = {
+    pathname: `/students/${student.id}`,
+    search: '',
+    hash: '',
+    state: { student, campus }
+  };
 
   return (
     <div className="column column-50">
@@ -16,7 +24,7 @@ const StudentCard = (props) => {
           <div className="column column-50">
 
             <div className="student-info">
-              <h3><a href="#">{student.fullName}</a></h3>
+              <h3><Link to={studentPage}>{student.fullName}</Link></h3>
               { student.campusId && <h4><a href="#">{campus.name}</a></h4> }
             </div>
 
