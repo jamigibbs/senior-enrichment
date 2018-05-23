@@ -15,6 +15,7 @@ const initialState = {
   campuses: [],
   students: [],
   newCampus: [],
+  newStudent: [],
   isFetching: false
 }
 
@@ -150,7 +151,7 @@ const rootReducer = (state = initialState, action) => {
     case GOT_NEW_CAMPUS_FROM_SERVER:
       return { ...state, campuses: [ ...state.campuses, action.campus ], newCampus: [action.campus]}
     case GOT_NEW_STUDENT_FROM_SERVER:
-      return { ...state, students: [...state.students, action.student]}
+      return { ...state, students: [...state.students, action.student], newStudent: [action.student]}
     case DELETED_STUDENT_FROM_SERVER: {
       const newArr = state.students.filter(student => student.id !== action.id)
       return {...state, students: newArr}

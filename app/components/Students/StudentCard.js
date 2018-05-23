@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 const StudentCard = (props) => {
   const { student, campus } = props
   const campusUrl = `campus/${campus.id}`
+  const studentUrl = `student/${student.id}`
   return (
     <div className="column column-50">
       <div className="student-card clearfix">
@@ -17,7 +18,7 @@ const StudentCard = (props) => {
           <div className="column column-50">
 
             <div className="student-info">
-              <h3><a href="#">{student.fullName}</a></h3>
+              <h3><Link to={studentUrl}>{student.fullName}</Link></h3>
               { student.campusId && <h4><Link to={campusUrl}>{campus.name}</Link></h4> }
             </div>
 

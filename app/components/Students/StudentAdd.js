@@ -14,8 +14,7 @@ export class StudentAdd extends Component {
       lastName: '',
       email: '',
       gpa: '',
-      campusId: '',
-      redirectToNewPage: false
+      campusId: ''
     }
   }
 
@@ -38,22 +37,22 @@ export class StudentAdd extends Component {
       gpa: this.state.gpa,
       campusId: this.state.campusId
     })
+  }
 
-    this.setState({
-      redirectToNewPage: true
-    })
+  componentDidUpdate(prevProps){
+    if (this.props.newStudent !== prevProps.newStudent) {
+      const studentId = this.props.newStudent[0].id
+      const studentUrl = `/student/${studentId}`
+      this.props.history.push(studentUrl);
+    }
   }
 
   render(){
-    if (this.props.students.length > 0 && this.state.redirectToNewPage){
-      const studentUrl = `/students/${this.props.students[0].id}`
-      return <Redirect to={studentUrl} />
-    }
-
     const { campuses, isFetching } = this.props;
 
-    if (isFetching) return <Loader className="preloader" type="balls" color="#9b4dca" />
-
+    if (isFetching) {
+      return <Loader className="preloader" type="balls" color="#9b4dca" />
+    }
     return (
       <div id="student-add">
         <Title id="student-add-title" content="New Student Form" />
@@ -101,7 +100,7 @@ export class StudentAdd extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    students: state.students,
+    newStudent: state.newStudent,
     campuses: state.campuses,
     isFetching: state.isFetching
   }

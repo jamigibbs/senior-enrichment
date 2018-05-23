@@ -19,7 +19,7 @@ const Main = () => {
 
       <Route exact path="/students/add" component={StudentAdd} />
       <Route exact path="/students" component={StudentsMain} />
-      <Route path="/students/u/:id" component={StudentView} />
+      <Route path="/student/:id" component={StudentView} />
     </div>
   );
 }
