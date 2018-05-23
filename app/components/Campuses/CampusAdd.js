@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { postNewCampus } from '../../reducers/'
 import { Redirect } from 'react-router-dom'
-
+import { postNewCampus } from '../../reducers/'
 import Title from '../Title'
 
 export class CampusAdd extends Component {
@@ -11,8 +10,7 @@ export class CampusAdd extends Component {
     super()
     this.state = {
       name: '',
-      description: '',
-      redirectToNewPage: false
+      description: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,21 +25,24 @@ export class CampusAdd extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
     this.props.post({
       name: this.state.name,
       description: this.state.description
-    });
-
-    this.setState({
-      redirectToNewPage: true
     })
+
   }
 
-  render(){
-    if (this.props.campuses.length > 0 && this.state.redirectToNewPage){
-      const campusUrl = `/campuses/${this.props.campuses[0].id}`
-      return <Redirect to={campusUrl} />
+  componentDidUpdate(prevProps){
+    if (this.props.newCampus !== prevProps.newCampus) {
+      const campusId = this.props.newCampus[0].id
+      const campusUrl = `/campus/${campusId}`
+      this.props.history.push(campusUrl);
     }
+  }
+
+
+  render(){
     return (
       <div id="campus-add">
         <Title id="add-campus-title" content="New Campus Form" />
@@ -75,7 +76,8 @@ export class CampusAdd extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    campuses: state.campuses
+    // campuses: state.campuses,
+    newCampus: state.newCampus
   }
 }
 
@@ -86,5 +88,22 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
+
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//   return {
+//       submit: form => e => {
+//           e.preventDefault()
+
+//           // ...
+
+//           dispatch(submitLoginForm(form)).then(data => {
+//               ownProps.history.push(data.nextRoute || '/')
+//               if (data.nextRoute) {
+//                   dispatch(setNextRoute(undefined))
+//               }
+//           })
+//       }
+//   }
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CampusAdd);

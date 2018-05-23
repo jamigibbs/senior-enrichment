@@ -32,10 +32,15 @@ export class Students extends Component {
 
             { campuses.length > 0 &&
               students.map((student) => {
+
+                const campus = campuses.find((camp) => {
+                  return camp.id === student.campusId
+                })
+
                 return (<StudentCard
                   key={student.id}
                   student={student}
-                  campus={campuses[student.campusId - 1]}
+                  campus={campus}
                 />)
               })
             }

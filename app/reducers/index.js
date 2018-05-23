@@ -14,6 +14,7 @@ const DONE_FETCHING_FROM_DB = 'DONE_FETCHING_FROM_DB'
 const initialState = {
   campuses: [],
   students: [],
+  newCampus: [],
   isFetching: false
 }
 
@@ -147,7 +148,7 @@ const rootReducer = (state = initialState, action) => {
     case GOT_STUDENTS_FROM_SERVER:
       return {...state, students: action.students}
     case GOT_NEW_CAMPUS_FROM_SERVER:
-      return { ...state, campuses: [ ...state.campuses, action.campus ]}
+      return { ...state, campuses: [ ...state.campuses, action.campus ], newCampus: [action.campus]}
     case GOT_NEW_STUDENT_FROM_SERVER:
       return { ...state, students: [...state.students, action.student]}
     case DELETED_STUDENT_FROM_SERVER: {
