@@ -4,6 +4,11 @@ import { Redirect } from 'react-router-dom'
 import { postNewCampus } from '../../reducers/'
 import Title from '../Title'
 
+const preContent = {
+  name: 'Starfleet Academy',
+  desc: "Startfleet Academy was created in the year 2161, when the United Federation of Planets was founded. The Academy's motto is Ex astris, scientia – From the stars, knowledge."
+}
+
 export class CampusAdd extends Component {
 
   constructor(props){
@@ -12,25 +17,20 @@ export class CampusAdd extends Component {
       name: '',
       description: ''
     }
-
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-
+  handleSubmit = (event) => {
+    event.preventDefault()
     this.props.post({
       name: this.state.name,
       description: this.state.description
     })
-
   }
 
   componentDidUpdate(prevProps){
@@ -40,7 +40,6 @@ export class CampusAdd extends Component {
       this.props.history.push(campusUrl);
     }
   }
-
 
   render(){
     return (
@@ -55,10 +54,10 @@ export class CampusAdd extends Component {
                 <fieldset>
 
                   <label htmlFor="name">Name</label>
-                  <input required value={this.state.name} name="name" id="name" type="text" placeholder="Starfleet Academy" />
+                  <input required value={this.state.name} name="name" id="name" type="text" placeholder={preContent.name} />
 
                   <label htmlFor="description">Description</label>
-                  <textarea required value={this.state.description} name="description" id="description" type="text" placeholder="Startfleet Academy was created in the year 2161, when the United Federation of Planets was founded. The Academy's motto is Ex astris, scientia – From the stars, knowledge." />
+                  <textarea required value={this.state.description} name="description" id="description" type="text" placeholder={preContent.desc} />
 
                   <input className="button-primary" type="submit" value="Send" />
 
@@ -76,7 +75,6 @@ export class CampusAdd extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // campuses: state.campuses,
     newCampus: state.newCampus
   }
 }
@@ -88,22 +86,5 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//   return {
-//       submit: form => e => {
-//           e.preventDefault()
-
-//           // ...
-
-//           dispatch(submitLoginForm(form)).then(data => {
-//               ownProps.history.push(data.nextRoute || '/')
-//               if (data.nextRoute) {
-//                   dispatch(setNextRoute(undefined))
-//               }
-//           })
-//       }
-//   }
-// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CampusAdd);
