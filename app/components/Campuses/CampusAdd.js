@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { postNewCampus } from '../reducers/'
+import { postNewCampus } from '../../reducers/'
 import { Redirect } from 'react-router-dom'
 
-import Title from './Title'
+import Title from '../Title'
 
 export class CampusAdd extends Component {
 

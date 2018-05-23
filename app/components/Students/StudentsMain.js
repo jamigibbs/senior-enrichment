@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Loader from 'react-loading'
 import { Link } from 'react-router-dom'
-import { fetchStudents, fetchCampuses } from '../reducers'
-import Title from './Title'
+import { fetchStudents, fetchCampuses } from '../../reducers'
+import Title from '../Title'
 import StudentCard from './StudentCard'
 
 export class Students extends Component {

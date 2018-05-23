@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Loader from 'react-loading'
 import { Redirect } from 'react-router-dom'
-import { postNewStudent, fetchCampuses } from '../reducers/'
+import { postNewStudent, fetchCampuses } from '../../reducers/'
 
-import Title from './Title'
+import Title from '../Title'
 
 export class StudentAdd extends Component {
   constructor(){

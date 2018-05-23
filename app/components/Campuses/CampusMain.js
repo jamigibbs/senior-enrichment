@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Loader from 'react-loading'
-import { fetchCampuses } from '../reducers'
-import Title from './Title'
+import { fetchCampuses } from '../../reducers'
+import Title from '../Title'
 import CampusCard from './CampusCard'
 
-export class Campuses extends Component {
+export class CampusMain extends Component {
 
   componentDidMount(){
     this.props.fetchCampuses()
@@ -57,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Campuses);
+export default connect(mapStateToProps, mapDispatchToProps)(CampusMain);

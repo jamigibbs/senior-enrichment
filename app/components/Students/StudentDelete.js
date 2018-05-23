@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deleteStudent } from '../reducers'
+import { deleteStudent } from '../../reducers'
 
 export class StudentDelete extends Component {
   handleClick = () => {
