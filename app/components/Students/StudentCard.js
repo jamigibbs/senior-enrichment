@@ -25,7 +25,18 @@ const StudentCard = (props) => {
 
             <div className="student-info">
               <h3><Link to={studentPage}>{student.fullName}</Link></h3>
-              { student.campusId && <h4><a href="#">{campus.name}</a></h4> }
+              { campus &&
+              <h4>
+                <Link
+                  to={{
+                    pathname: `/campuses/${campus.id}`,
+                    search: '',
+                    hash: '',
+                    state: { campus }
+                  }}>
+                  {campus.name}
+                </Link>
+              </h4> }
             </div>
 
             <div className="actions">
