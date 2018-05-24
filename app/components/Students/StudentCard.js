@@ -38,7 +38,7 @@ const StudentCard = (props) => {
                       </Link>
                     </h3>
 
-                    { student.campusId &&
+                    { campus &&
                       <h4>
                         <Link to={`../campus/${campus.id}`}>
                           {campus.name}

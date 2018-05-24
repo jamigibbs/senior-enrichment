@@ -4,10 +4,15 @@ import axios from 'axios'
 
 const GOT_CAMPUSES_FROM_SERVER = 'GOT_CAMPUSES_FROM_SERVER'
 const GOT_STUDENTS_FROM_SERVER = 'GOT_STUDENTS_FROM_SERVER'
+
 const GOT_NEW_CAMPUS_FROM_SERVER = 'GOT_NEW_CAMPUS_FROM_SERVER'
 const GOT_NEW_STUDENT_FROM_SERVER = 'GOT_NEW_STUDENT_FROM_SERVER'
+
 const DELETED_STUDENT_FROM_SERVER = 'DELETED_STUDENT_FROM_SERVER'
 const DELETED_CAMPUS_FROM_SERVER = 'DELETED_CAMPUS_FROM_SERVER'
+
+const UPDATED_STUDENT = 'UPDATED_STUDENT'
+
 const FETCHING_FROM_DB = 'FETCHING_FROM_DB'
 const DONE_FETCHING_FROM_DB = 'DONE_FETCHING_FROM_DB'
 
@@ -142,7 +147,27 @@ export const deleteCampus = (id) => {
   }
 }
 
-const rootReducer = (state = initialState, action) => {
+export const updatedStudentOnServer = (id, body) => {
+  return {
+    type: UPDATED_STUDENT,
+    id,
+    body
+  }
+}
+
+export const updateStudent = (id, body) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`/api/students/${id}`, body)
+      const action = updatedStudentOnServer(id, body)
+      dispatch(action)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+const rootReducer = (state = initialState, action) => { // eslint-disable-line complexity
   switch (action.type) {
     case GOT_CAMPUSES_FROM_SERVER:
       return {...state, campuses: action.campuses}
@@ -159,6 +184,18 @@ const rootReducer = (state = initialState, action) => {
     case DELETED_CAMPUS_FROM_SERVER: {
       const newCampuses = state.campuses.filter(campus => campus.id !== action.id)
       return {...state, campuses: newCampuses}
+    }
+    case UPDATED_STUDENT: {
+      const updatedStudents = state.students.map( (stu) => {
+        if ( stu.id === action.id ) {
+          for (var key in action.body){
+            stu[key] = action.body[key]
+            // return stu
+          }
+        }
+        return stu
+      })
+      return {...state, students: updatedStudents}
     }
     case FETCHING_FROM_DB:
       return {...state, isFetching: true}

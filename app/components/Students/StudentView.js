@@ -8,15 +8,10 @@ import StudentCard from './StudentCard'
 
 export class StudentView extends Component {
 
-  constructor(){
-    super()
-    this.findStudent = this.findStudent.bind(this);
-  }
-
-  componentDidMount(){
-    this.props.fetchStudents()
-    this.props.fetchCampuses()
-  }
+  // componentDidMount(){
+  //   this.props.fetchStudents()
+  //   this.props.fetchCampuses()
+  // }
 
   findStudent = (student) => {
     return student.id === Number(this.props.match.params.id)
@@ -31,7 +26,7 @@ export class StudentView extends Component {
 
     const student = students.find(this.findStudent)
     const campus = campuses.find((camp) => {
-      return camp.id === student.campusId
+      return camp.id === Number(student.campusId)
     })
 
     return (
@@ -40,7 +35,7 @@ export class StudentView extends Component {
           <div>
             <StudentCard student={student} campus={campus} showDetails="true" />
             <CampusCard campus={campus} />
-            <CampusChange campuses={campuses} />
+            <CampusChange studentId={student.id} campuses={campuses} />
           </div>
         }
       </div>
@@ -66,7 +61,6 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentView)
 

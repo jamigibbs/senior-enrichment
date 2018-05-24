@@ -1,19 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { updateStudent, fetchStudents, fetchCampuses } from '../../reducers'
 
 export class CampusChange extends Component {
-  // constructor(){
-  //   super()
-  // }
+  constructor(){
+    super()
+    this.state = {
+      campusId: ''
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.update(this.props.studentId, this.state)
+  }
 
   render(){
     const { campuses } = this.props;
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
           <fieldset>
             <label htmlFor="campus">Campus</label>
-            <select value={campuses.campusId} name="campusId">
+            <select value={this.state.campusId} name="campusId">
               <option value="-">-</option>
               {
                 campuses.map((campus) => {
@@ -29,4 +44,12 @@ export class CampusChange extends Component {
   }
 }
 
-export default connect(null, null)(CampusChange)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    update: (id, body) => {
+      dispatch(updateStudent(id, body))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CampusChange)

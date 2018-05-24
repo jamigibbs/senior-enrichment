@@ -35,7 +35,7 @@ export class CampusView extends Component {
               campus.students.length > 0 ?
 
               campus.students.map( (student, index) => {
-                return <StudentCard key={index} student={student} campus={campus}/>
+                return <StudentCard key={index} student={student} campus={campus} />
               }) :
 
               <h3>There are no students registered to this campus.</h3>
@@ -63,6 +63,5 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CampusView)
