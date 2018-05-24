@@ -18,7 +18,7 @@ const CampusCard = (props) => {
 
           <div className="column column-50">
             {
-                props.details ? (
+                props.showDetails ? (
                   <div>
                     <h3>{campus.name}</h3>
                     <p>{campus.description}</p>

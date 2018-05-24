@@ -27,11 +27,9 @@ export class CampusView extends Component {
 
     return (
       <div>
-        {
-          campus &&
+        { campus &&
           <div>
-
-            <CampusCard campus={campus} details="true" />
+            <CampusCard campus={campus} showDetails="true" />
 
             {
               campus.students.length > 0 ?
@@ -44,7 +42,6 @@ export class CampusView extends Component {
             }
 
             <Link className="button button-outline float-right" to="/students/add">Add Student</Link>
-
           </div>
         }
       </div>
