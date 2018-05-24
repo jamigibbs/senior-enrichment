@@ -8,10 +8,10 @@ import StudentCard from './StudentCard'
 
 export class StudentView extends Component {
 
-  // componentDidMount(){
-  //   this.props.fetchStudents()
-  //   this.props.fetchCampuses()
-  // }
+  componentDidMount(){
+    this.props.fetchStudents()
+    this.props.fetchCampuses()
+  }
 
   findStudent = (student) => {
     return student.id === Number(this.props.match.params.id)
@@ -29,14 +29,20 @@ export class StudentView extends Component {
       return camp.id === Number(student.campusId)
     })
 
+    console.log('StudentCard', student)
+
     return (
       <div>
-        { campuses.length > 0 &&
-          <div>
-            <StudentCard student={student} campus={campus} showDetails="true" />
-            <CampusCard campus={campus} />
-            <CampusChange studentId={student.id} campuses={campuses} />
-          </div>
+        <StudentCard student={student} campus={campus} showDetails="true" />
+        {
+          campus ? (
+            <div>
+              <CampusCard campus={campus} />
+              <CampusChange studentId={student.id} campuses={campuses} />
+            </div>
+          ) : (
+            <h3>Student not assigned to a campus</h3>
+          )
         }
       </div>
     )

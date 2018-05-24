@@ -30,7 +30,7 @@ export class Students extends Component {
             <Link className="button button-outline float-right" to="/students/add">Add Student</Link>
             </div>
 
-            { campuses.length > 0 &&
+            { students.length > 0 &&
               students.map((student) => {
 
                 const campus = campuses.find((camp) => {
