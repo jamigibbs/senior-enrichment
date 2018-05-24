@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom'
 
 const StudentCard = (props) => {
   const { student, campus } = props
-  const campusUrl = `campus/${campus.id}`
-  const studentUrl = `student/${student.id}`
+  const campusUrl = `../campus/${campus.id}`
+  const studentUrl = `../student/${student.id}`
+
+  const handleClick = () => {
+    props.history.push(studentUrl);
+  }
   return (
     <div className="column column-50">
       <div className="student-card clearfix">
@@ -19,7 +23,9 @@ const StudentCard = (props) => {
 
             <div className="student-info">
               <h3><Link to={studentUrl}>{student.fullName}</Link></h3>
-              { student.campusId && <h4><Link to={campusUrl}>{campus.name}</Link></h4> }
+              { student.campusId &&
+                <h4><Link to={campusUrl}>{campus.name}</Link></h4>
+              }
             </div>
 
             <div className="actions">

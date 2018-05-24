@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CampusDelete from './CampusDelete'
+import CampusMap from './CampusMap'
 
 const CampusCard = (props) => {
   const studentCount = props.campus.students.length;
@@ -16,7 +17,16 @@ const CampusCard = (props) => {
           </div>
 
           <div className="column column-50">
-            <Link to={campusLink} >{campus.name}</Link>
+            {
+                props.details ? (
+                  <div>
+                    <h3>{campus.name}</h3>
+                    <p>{campus.description}</p>
+                     <CampusMap address={campus.address} />
+                  </div>
+              ) : (
+              <Link to={campusLink} >{campus.name}</Link> )
+            }
             <p>{studentCount} student{studentCount > 1 && 's'}</p>
 
             <div className="actions">

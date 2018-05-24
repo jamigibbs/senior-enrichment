@@ -1,9 +1,9 @@
 [
   [
-    {"name": "First campus name", "imageUrl": "https://i.imgur.com/zKesgV4.png", "description": "Lorem ipsum dolar sit emit"},
-    {"name": "Second campus name", "imageUrl": "https://i.imgur.com/zKesgV4.png", "description": "Lorem ipsum dolar sit emit"},
-    {"name": "Third campus name", "imageUrl": "https://i.imgur.com/zKesgV4.png", "description": "Lorem ipsum dolar sit emit"},
-    {"name": "Fourth campus name", "imageUrl": "https://i.imgur.com/zKesgV4.png", "description": "Lorem ipsum dolar sit emit"}
+    {"name": "First campus name", "imageUrl": "https://i.imgur.com/zKesgV4.png", "description": "Lorem ipsum dolar sit emit", "address": "1235 Main St, Chicago IL 60660"},
+    {"name": "Second campus name", "imageUrl": "https://i.imgur.com/zKesgV4.png", "description": "Lorem ipsum dolar sit emit", "address": "1235 Main St, Chicago IL 60660"},
+    {"name": "Third campus name", "imageUrl": "https://i.imgur.com/zKesgV4.png", "description": "Lorem ipsum dolar sit emit", "address": "1235 Main St, Chicago IL 60660"},
+    {"name": "Fourth campus name", "imageUrl": "https://i.imgur.com/zKesgV4.png", "description": "Lorem ipsum dolar sit emit", "address": "1235 Main St, Chicago IL 60660"}
   ],
   [
     {"firstName": "John", "lastName": "Lennon", "email": "john@lennon.com", "gpa": 3.5, "campusId": 1, "imageUrl": "https://i.imgur.com/HqRwvWC.png"},
