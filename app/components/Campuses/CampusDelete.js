@@ -10,12 +10,10 @@ export class CampusDelete extends Component {
   render(){
     return (
       <div id="campus-delete">
-        <input
+        <a
           onClick={() => { if (window.confirm('Are you sure you want to delete this campus?')) this.handleClick() }}  // eslint-disable-line no-alert
-          className="button button-clear"
-          type="submit"
-          value="Delete"
-        />
+          className="button button-clear" >Delete
+        </a>
       </div>
     )
   }

@@ -4,9 +4,9 @@
   background-color: $background-color-light;
   padding: 10px;
   position: relative;
-  a {
-    font-size: 18px;
-  }
+  // a {
+  //   font-size: 18px;
+  // }
   img {
     height: 200px;
   }
@@ -20,9 +20,7 @@
       display: inline-block;
       a {
         color: $purple;
-        text-transform: uppercase;
-        font-size: 1.1rem;
-        font-weight: 700;
+        font-size: 12px;
       }
     }
   }

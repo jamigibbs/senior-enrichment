@@ -6,19 +6,20 @@ export class CampusChange extends Component {
   constructor(){
     super()
     this.state = {
-      campusId: ''
+      campusId: 0
     }
   }
 
   handleChange = (event) => {
+    const campusId = Number(event.target.value);
     this.setState({
-      [event.target.name]: event.target.value
+      campusId
     })
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.update(this.props.studentId, this.state)
+    this.props.update(this.props.studentId, this.state.campusId)
   }
 
   render(){
