@@ -207,22 +207,17 @@ const rootReducer = (state = initialState, action) => { // eslint-disable-line c
       return {...state, campuses: newCampuses}
     }
     case UPDATED_STUDENT: {
-      const updatedStudents = state.students.map( (stu) => {
-        if ( stu.id === action.id ) {
-          Object.keys(action.body).forEach((key) => {
-            stu[key] = action.body[key]
-          })
-          return stu
+      const updatedStudents = state.students.map( (student) => {
+        if ( student.id === action.id ) {
+          return {...student, ...action.body}
         }
-        return stu
+        return student
       })
       return {...state, students: updatedStudents}
     }
     case UPDATED_CAMPUS: {
       const updatedCampuses = state.campuses.map( (campus) => {
-        console.log('***', campus)
         if ( campus.id == action.id ) {
-          console.log('Match found!')
           return {...campus, ...action.body}
         }
         return campus
