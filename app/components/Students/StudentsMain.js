@@ -14,7 +14,9 @@ export class Students extends Component {
 
   render(){
     const { students, campuses, isFetching } = this.props;
+
     if (isFetching) return <Loader className="preloader" type="balls" color="#9b4dca" />
+
     return (
       <div className="students-all">
 
@@ -33,9 +35,7 @@ export class Students extends Component {
             { students.length > 0 &&
                 students.map((student) => {
 
-                  const campus = campuses.find((camp) => {
-                    return camp.id === student.campusId
-                  })
+                  const campus = this.props.campus(student.campusId)
 
                   return (<StudentCard
                     key={student.id}
@@ -55,7 +55,12 @@ const mapStateToProps = (state) => {
   return {
     students: state.students,
     campuses: state.campuses,
-    isFetching: state.isFetching
+    isFetching: state.isFetching,
+    campus: (id) => {
+      return state.campuses.find((campus) => {
+        return campus.id === id
+      })
+    }
   }
 }
 

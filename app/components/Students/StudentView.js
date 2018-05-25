@@ -13,15 +13,15 @@ export class StudentView extends Component {
     this.props.fetchCampuses()
   }
 
-  studentDetails = () => {
-    const studentId = Number(this.props.match.params.id)
-    return this.props.student(studentId)
-  }
+  // studentDetails = () => {
+  //   const studentId = Number(this.props.match.params.id)
+  //   return this.props.student(studentId)
+  // }
 
-  campusDetails = () => {
-    const campusId = Number(this.props.match.params.id)
-    return this.props.campus(campusId)
-  }
+  // campusDetails = () => {
+  //   const campusId = Number(this.props.match.params.id)
+  //   return this.props.campus(campusId)
+  // }
 
   render(){
     const { students, campuses, isFetching } = this.props;
@@ -30,8 +30,9 @@ export class StudentView extends Component {
       return <Loader className="preloader" type="balls" color="#9b4dca" />
     }
 
-    const student = this.studentDetails()
-    const campus = this.campusDetails()
+    const studentId = Number(this.props.match.params.id)
+    const student = this.props.student(studentId)
+    const campus = this.props.campus(student.campusId)
 
     return (
       <div>
@@ -39,7 +40,7 @@ export class StudentView extends Component {
         {
           campus ? (
             <div>
-              <CampusCard campus={this.campusDetails()} />
+              <CampusCard campus={campus} />
               <CampusChange studentId={student.id} campuses={campuses} />
             </div>
           ) : (
@@ -53,6 +54,9 @@ export class StudentView extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    students: state.students,
+    campuses: state.campuses,
+    isFetching: state.isFetching,
     student: (id) => {
       return state.students.find((student) => {
         return student.id === id
@@ -62,10 +66,7 @@ const mapStateToProps = (state) => {
       return state.campuses.find((campus) => {
         return campus.id === id
       })
-    },
-    students: state.students,
-    campuses: state.campuses,
-    isFetching: state.isFetching
+    }
   }
 }
 

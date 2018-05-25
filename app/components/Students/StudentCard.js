@@ -5,10 +5,6 @@ import { Link } from 'react-router-dom'
 const StudentCard = (props) => {
   const { student, campus } = props
 
-  const handleClick = () => {
-    props.history.push(`../student/${student.id}`);
-  }
-
   return (
     <div className="column column-20">
       <div className="student-card clearfix">
