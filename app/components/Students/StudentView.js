@@ -13,8 +13,14 @@ export class StudentView extends Component {
     this.props.fetchCampuses()
   }
 
-  findStudent = (student) => {
-    return student.id === Number(this.props.match.params.id)
+  studentDetails = () => {
+    const studentId = Number(this.props.match.params.id)
+    return this.props.student(studentId)
+  }
+
+  campusDetails = () => {
+    const campusId = Number(this.props.match.params.id)
+    return this.props.campus(campusId)
   }
 
   render(){
@@ -24,12 +30,8 @@ export class StudentView extends Component {
       return <Loader className="preloader" type="balls" color="#9b4dca" />
     }
 
-    const student = students.find(this.findStudent)
-    const campus = campuses.find((camp) => {
-      return camp.id === Number(student.campusId)
-    })
-
-    console.log('StudentCard', student)
+    const student = this.studentDetails()
+    const campus = this.campusDetails()
 
     return (
       <div>
@@ -37,7 +39,7 @@ export class StudentView extends Component {
         {
           campus ? (
             <div>
-              <CampusCard campus={campus} />
+              <CampusCard campus={this.campusDetails()} />
               <CampusChange studentId={student.id} campuses={campuses} />
             </div>
           ) : (
@@ -51,6 +53,16 @@ export class StudentView extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    student: (id) => {
+      return state.students.find((student) => {
+        return student.id === id
+      })
+    },
+    campus: (id) => {
+      return state.campuses.find((campus) => {
+        return campus.id === id
+      })
+    },
     students: state.students,
     campuses: state.campuses,
     isFetching: state.isFetching

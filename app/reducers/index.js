@@ -12,6 +12,7 @@ const DELETED_STUDENT_FROM_SERVER = 'DELETED_STUDENT_FROM_SERVER'
 const DELETED_CAMPUS_FROM_SERVER = 'DELETED_CAMPUS_FROM_SERVER'
 
 const UPDATED_STUDENT = 'UPDATED_STUDENT'
+const UPDATED_CAMPUS = 'UPDATED_CAMPUS'
 
 const FETCHING_FROM_DB = 'FETCHING_FROM_DB'
 const DONE_FETCHING_FROM_DB = 'DONE_FETCHING_FROM_DB'
@@ -167,6 +168,26 @@ export const updateStudent = (id, body) => {
   }
 }
 
+export const updatedCampusOnServer = (id, body) => {
+  return {
+    type: UPDATED_CAMPUS,
+    id,
+    body
+  }
+}
+
+export const updateCampus = (id, body) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`/api/campuses/${id}`, body)
+      const action = updatedCampusOnServer(id, body)
+      dispatch(action)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 const rootReducer = (state = initialState, action) => { // eslint-disable-line complexity
   switch (action.type) {
     case GOT_CAMPUSES_FROM_SERVER:
@@ -196,6 +217,15 @@ const rootReducer = (state = initialState, action) => { // eslint-disable-line c
         return stu
       })
       return {...state, students: updatedStudents}
+    }
+    case UPDATED_CAMPUS: {
+      const updatedCampuses = state.campuses.map( (campus) => {
+        if ( campus.id == action.id ) {
+          return {...campus, ...action.body}
+        }
+        return campus
+      })
+      return {...state, campuses: updatedCampuses}
     }
     case FETCHING_FROM_DB:
       return {...state, isFetching: true}

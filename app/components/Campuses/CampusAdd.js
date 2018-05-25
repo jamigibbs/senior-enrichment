@@ -54,10 +54,10 @@ export class CampusAdd extends Component {
                 <fieldset>
 
                   <label htmlFor="name">Name</label>
-                  <input required value={this.state.name} name="name" id="name" type="text" placeholder={preContent.name} />
+                  <input required value={this.state.name} name="name" id="name" type="text" />
 
                   <label htmlFor="description">Description</label>
-                  <textarea required value={this.state.description} name="description" id="description" type="text" placeholder={preContent.desc} />
+                  <textarea required value={this.state.description} name="description" id="description" type="text" />
 
                   <input className="button-primary" type="submit" value="Send" />
 

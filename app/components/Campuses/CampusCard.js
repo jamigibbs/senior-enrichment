@@ -38,7 +38,8 @@ const CampusCard = (props) => {
             }
 
             <div className="actions">
-              <button type="button" className="button button-outline">Edit Campus</button>
+              {/* <button type="button" className="button button-outline">Edit Campus</button> */}
+              <Link to={`/campus/edit/${campus.id}`} className="button button-outline">Edit Campus</Link>
               <CampusDelete id={campus.id} />
             </div>
           </div>

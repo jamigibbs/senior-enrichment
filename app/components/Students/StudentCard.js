@@ -9,10 +9,6 @@ const StudentCard = (props) => {
     props.history.push(`../student/${student.id}`);
   }
 
-  const handleEditClick = () => {
-    props.history.push(`../student/${student.id}`);
-  }
-
   return (
     <div className="column column-20">
       <div className="student-card clearfix">
@@ -51,7 +47,6 @@ const StudentCard = (props) => {
             </div>
 
             <div className="actions">
-              {/* <button type="button" className="button button-outline">Edit Student</button> */}
               <Link to={`/student/edit/${student.id}`} className="button button-outline">Edit Student</Link>
               <StudentDelete id={student.id} />
             </div>
