@@ -15,7 +15,8 @@ export class CampusAdd extends Component {
     super()
     this.state = {
       name: '',
-      description: ''
+      description: '',
+      address: ''
     }
   }
 
@@ -29,7 +30,8 @@ export class CampusAdd extends Component {
     event.preventDefault()
     this.props.post({
       name: this.state.name,
-      description: this.state.description
+      description: this.state.description,
+      address: this.state.address
     })
   }
 
@@ -58,6 +60,9 @@ export class CampusAdd extends Component {
 
                   <label htmlFor="description">Description</label>
                   <textarea required value={this.state.description} name="description" id="description" type="text" />
+
+                  <label htmlFor="address">Address</label>
+                  <input required value={this.state.address} name="address" id="address" type="text" />
 
                   <input className="button-primary" type="submit" value="Send" />
 

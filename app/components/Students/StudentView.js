@@ -9,27 +9,12 @@ import StudentCard from './StudentCard'
 export class StudentView extends Component {
 
   componentDidMount(){
-    this.props.fetchStudents()
-    this.props.fetchCampuses()
+    // this.props.fetchStudents()
+    // this.props.fetchCampuses()
   }
 
-  // studentDetails = () => {
-  //   const studentId = Number(this.props.match.params.id)
-  //   return this.props.student(studentId)
-  // }
-
-  // campusDetails = () => {
-  //   const campusId = Number(this.props.match.params.id)
-  //   return this.props.campus(campusId)
-  // }
-
   render(){
-    const { students, campuses, isFetching } = this.props;
-
-    if (isFetching) {
-      return <Loader className="preloader" type="balls" color="#9b4dca" />
-    }
-
+    const { campuses } = this.props;
     const studentId = Number(this.props.match.params.id)
     const student = this.props.student(studentId)
 
@@ -49,7 +34,10 @@ export class StudentView extends Component {
           campus ? (
             <div>
               <CampusCard campus={campus} />
-              <CampusChange campusId={campus.id} studentId={student.id} campuses={campuses} />
+              <CampusChange
+                campusId={campus.id}
+                studentId={student.id}
+                campuses={campuses} />
             </div>
           ) : (
             <h3>Student not assigned to a campus</h3>
@@ -62,9 +50,7 @@ export class StudentView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    students: state.students,
     campuses: state.campuses,
-    isFetching: state.isFetching,
     student: (id) => {
       return state.students.find((student) => {
         return student.id === id
@@ -78,16 +64,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchStudents: () => {
-      dispatch(fetchStudents())
-    },
-    fetchCampuses: () => {
-      dispatch(fetchCampuses())
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(StudentView)
+export default connect(mapStateToProps, null)(StudentView)
 

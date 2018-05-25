@@ -159,7 +159,7 @@ export const updatedStudentOnServer = (id, body) => {
 export const updateStudent = (id, body) => {
   return async (dispatch) => {
     try {
-      await axios.put(`/api/students/${id}`, body)
+      const result = await axios.put(`/api/students/${id}`, body)
       const action = updatedStudentOnServer(id, body)
       dispatch(action)
     } catch (err) {
@@ -220,7 +220,9 @@ const rootReducer = (state = initialState, action) => { // eslint-disable-line c
     }
     case UPDATED_CAMPUS: {
       const updatedCampuses = state.campuses.map( (campus) => {
+        console.log('***', campus)
         if ( campus.id == action.id ) {
+          console.log('Match found!')
           return {...campus, ...action.body}
         }
         return campus

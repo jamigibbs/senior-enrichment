@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateStudent, fetchStudents, fetchCampuses } from '../../reducers'
+import { updateStudent } from '../../reducers'
 
 export class CampusChange extends Component {
   constructor(props){
@@ -19,7 +19,7 @@ export class CampusChange extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.update(this.props.studentId, this.state.campusId)
+    this.props.update(this.props.studentId, this.state)
   }
 
   render(){
@@ -29,7 +29,7 @@ export class CampusChange extends Component {
         <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
           <fieldset>
             <label htmlFor="campus">Change Campus</label>
-            <select value={this.state.campusId} name="campusId">
+            <select defaultValue={this.state.campusId} name="campusId">
               <option value="-">-</option>
               {
                 campuses.map((campus) => {
@@ -44,14 +44,6 @@ export class CampusChange extends Component {
     )
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     student: (id) => {
-
-//     }
-//   }
-// }
 
 const mapDispatchToProps = (dispatch) => {
   return {
