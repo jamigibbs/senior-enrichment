@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { isFetching, fetchStudents, fetchCampuses, updateStudent } from '../../reducers'
+import { fetchStudents, fetchCampuses, updateStudent } from '../../reducers'
 import Title from '../Title'
 
 export class StudentEdit extends Component {
@@ -27,7 +27,7 @@ export class StudentEdit extends Component {
 
   populateForm = (studentId) => {
     const student = this.props.student(studentId)
-    console.log(student)
+
     this.setState({
       fullName: student.fullName,
       firstName: student.firstName,
@@ -47,8 +47,8 @@ export class StudentEdit extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-
     const studentId = Number(this.props.match.params.id)
+
     this.props.update(studentId, {
       fullName: this.state.firstName + ' ' + this.state.lastName,
       firstName: this.state.firstName,
@@ -127,8 +127,7 @@ const mapStateToProps = (state) => {
         return campus.id === id
       })
     },
-    campuses: state.campuses,
-    isFetching: state.isFetching
+    campuses: state.campuses
   }
 }
 
