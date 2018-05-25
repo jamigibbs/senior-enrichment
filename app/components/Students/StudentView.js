@@ -32,11 +32,19 @@ export class StudentView extends Component {
 
     const studentId = Number(this.props.match.params.id)
     const student = this.props.student(studentId)
-    const campus = this.props.campus(student.campusId)
+
+    let campus;
+    if (student){
+      campus = this.props.campus(student.campusId)
+    }
 
     return (
       <div id="student-view">
-        <StudentCard student={student} campus={campus} showDetails="true" />
+        {
+          student &&
+          <StudentCard student={student} campus={campus} showDetails="true" />
+        }
+
         {
           campus ? (
             <div>
