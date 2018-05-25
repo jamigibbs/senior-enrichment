@@ -26,20 +26,24 @@ export class CampusView extends Component {
     const campus = campuses.find(this.findCampus)
 
     return (
-      <div>
+      <div className="container campus-view">
         { campus &&
           <div>
             <CampusCard campus={campus} showDetails="true" />
 
-            {
-              campus.students.length > 0 ?
+            <div className="students-all">
+              <div className="row">
+              {
+                campus.students.length > 0 ?
 
-              campus.students.map( (student, index) => {
-                return <StudentCard key={index} student={student} campus={campus} />
-              }) :
+                campus.students.map( (student, index) => {
+                  return <StudentCard key={index} student={student} campus={campus} />
+                }) :
 
-              <h3>There are no students registered to this campus.</h3>
-            }
+                <h3>There are no students registered to this campus.</h3>
+              }
+              </div>
+            </div>
 
             <Link className="button button-outline float-right" to="/students/add">Add Student</Link>
           </div>

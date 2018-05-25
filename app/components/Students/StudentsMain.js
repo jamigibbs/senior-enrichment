@@ -16,7 +16,7 @@ export class Students extends Component {
     const { students, campuses, isFetching } = this.props;
     if (isFetching) return <Loader className="preloader" type="balls" color="#9b4dca" />
     return (
-      <div id="students-all">
+      <div className="students-all">
 
         <Title id="students-title" content="Students Listing" />
 
@@ -31,18 +31,18 @@ export class Students extends Component {
             </div>
 
             { students.length > 0 &&
-              students.map((student) => {
+                students.map((student) => {
 
-                const campus = campuses.find((camp) => {
-                  return camp.id === student.campusId
+                  const campus = campuses.find((camp) => {
+                    return camp.id === student.campusId
+                  })
+
+                  return (<StudentCard
+                    key={student.id}
+                    student={student}
+                    campus={campus}
+                  />)
                 })
-
-                return (<StudentCard
-                  key={student.id}
-                  student={student}
-                  campus={campus}
-                />)
-              })
             }
           </div>
         </div>

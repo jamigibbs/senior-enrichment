@@ -24,15 +24,18 @@ const CampusCard = (props) => {
           <div className="column column-50">
             {
                 props.showDetails === 'true' ? (
-                  <div>
+                  <div className="content-area">
                     <h3>{campus.name}</h3>
-                    <p>{campus.description}</p>
-                      <CampusMap address={campus.address} />
+                    <p>Students: {studentCount}</p>
+                    {
+                      props.showDetails === 'true' &&
+                        <CampusMap address={campus.address} />
+                      }
+                    <p className="description">{campus.description}</p>
                   </div>
               ) : (
               <Link to={campusLink} >{campus.name}</Link> )
             }
-            <p>{studentCount} student{studentCount > 1 && 's'}</p>
 
             <div className="actions">
               <button type="button" className="button button-outline">Edit Campus</button>

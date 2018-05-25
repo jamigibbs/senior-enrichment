@@ -3,7 +3,7 @@ import React from 'react';
 const CampusMap = (props) => {
 
   return (
-    <p>{props.address}</p>
+    <p className="address">{props.address}</p>
   )
 }
 

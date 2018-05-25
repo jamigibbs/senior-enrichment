@@ -14,15 +14,10 @@ const StudentCard = (props) => {
   }
 
   return (
-    <div className="column column-50">
+    <div className="column column-20">
       <div className="student-card clearfix">
-        <div className="row">
 
-          <div className="column column-50">
             <img className="cover float-left" src={props.student.imageUrl} />
-          </div>
-
-          <div className="column column-50">
 
             <div className="student-info">
               {
@@ -60,10 +55,8 @@ const StudentCard = (props) => {
               <Link to={`/student/edit/${student.id}`} className="button button-outline">Edit Student</Link>
               <StudentDelete id={student.id} />
             </div>
-          </div>
-
-        </div>
       </div>
+
     </div>
   )
 }
