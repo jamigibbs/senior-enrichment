@@ -188,10 +188,10 @@ const rootReducer = (state = initialState, action) => { // eslint-disable-line c
     case UPDATED_STUDENT: {
       const updatedStudents = state.students.map( (stu) => {
         if ( stu.id === action.id ) {
-          for (var key in action.body){
+          Object.keys(action.body).forEach((key) => {
             stu[key] = action.body[key]
-            // return stu
-          }
+          })
+          return stu
         }
         return stu
       })

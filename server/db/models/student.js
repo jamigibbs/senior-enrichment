@@ -27,12 +27,20 @@ const Student = db.define('student', {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue: 'https://i.imgur.com/nJXHGxP.png'
-  },
-  fullName: {
-    type: Sequelize.VIRTUAL,
-    get () {
-      return this.getDataValue('firstName') + ' ' + this.getDataValue('lastName')
+  }
+}, {
+  getterMethods: {
+    fullName() {
+      return this.firstName + ' ' + this.lastName
     }
+  },
+  setterMethods: {
+    fullName(value) {
+      const names = value.split(' ');
+
+      this.setDataValue('firstName', names.slice(0, -1).join(' '));
+      this.setDataValue('lastName', names.slice(-1).join(' '));
+    },
   }
 })
 

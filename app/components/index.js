@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom';
 
 import { CampusMain, CampusAdd, CampusView } from './Campuses'
-import { StudentsMain, StudentAdd, StudentView } from './Students'
+import { StudentsMain, StudentAdd, StudentView, StudentEdit } from './Students'
 
 import Home from './Home'
 import Header from './Header'
@@ -19,7 +19,8 @@ const Main = () => {
 
       <Route exact path="/students/add" component={StudentAdd} />
       <Route exact path="/students" component={StudentsMain} />
-      <Route path="/student/:id" component={StudentView} />
+      <Route exact path="/student/edit/:id" component={StudentEdit} />
+      <Route exact path="/student/:id" component={StudentView} />
     </div>
   );
 }

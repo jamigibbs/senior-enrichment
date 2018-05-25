@@ -6,6 +6,9 @@
   position: relative;
   a {
     font-size: 18px;
+    &.button {
+      font-size: 12px;
+    }
   }
   img {
     height: 200px;
