@@ -41,7 +41,7 @@ export class StudentView extends Component {
           campus ? (
             <div>
               <CampusCard campus={campus} />
-              <CampusChange studentId={student.id} campuses={campuses} />
+              <CampusChange campusId={campus.id} studentId={student.id} campuses={campuses} />
             </div>
           ) : (
             <h3>Student not assigned to a campus</h3>

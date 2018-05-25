@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { updateStudent, fetchStudents, fetchCampuses } from '../../reducers'
 
 export class CampusChange extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      campusId: 0
+      campusId: props.campusId
     }
   }
 
@@ -44,6 +44,14 @@ export class CampusChange extends Component {
     )
   }
 }
+
+// const mapStateToProps = (state) => {
+//   return {
+//     student: (id) => {
+
+//     }
+//   }
+// }
 
 const mapDispatchToProps = (dispatch) => {
   return {
