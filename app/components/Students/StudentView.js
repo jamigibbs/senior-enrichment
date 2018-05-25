@@ -57,12 +57,12 @@ const mapStateToProps = (state) => {
     isFetching: state.isFetching,
     student: (id) => {
       return state.students.find((student) => {
-        return student.id === id
+        return student.id == id
       })
     },
     campus: (id) => {
       return state.campuses.find((campus) => {
-        return campus.id === id
+        return campus.id == id
       })
     }
   }

@@ -148,19 +148,18 @@ export const deleteCampus = (id) => {
   }
 }
 
-export const updatedStudentOnServer = (id, body) => {
+export const updatedStudentOnServer = (student) => {
   return {
     type: UPDATED_STUDENT,
-    id,
-    body
+    student
   }
 }
 
 export const updateStudent = (id, body) => {
   return async (dispatch) => {
     try {
-      const result = await axios.put(`/api/students/${id}`, body)
-      const action = updatedStudentOnServer(id, body)
+      const { data } = await axios.put(`/api/students/${id}`, body)
+      const action = updatedStudentOnServer(data)
       dispatch(action)
     } catch (err) {
       console.error(err)
@@ -168,10 +167,9 @@ export const updateStudent = (id, body) => {
   }
 }
 
-export const updatedCampusOnServer = (id, body) => {
+export const updatedCampusOnServer = (body) => {
   return {
     type: UPDATED_CAMPUS,
-    id,
     body
   }
 }
@@ -179,8 +177,8 @@ export const updatedCampusOnServer = (id, body) => {
 export const updateCampus = (id, body) => {
   return async (dispatch) => {
     try {
-      await axios.put(`/api/campuses/${id}`, body)
-      const action = updatedCampusOnServer(id, body)
+      const { data } = await axios.put(`/api/campuses/${id}`, body)
+      const action = updatedCampusOnServer(data)
       dispatch(action)
     } catch (err) {
       console.error(err)
@@ -207,17 +205,17 @@ const rootReducer = (state = initialState, action) => { // eslint-disable-line c
       return {...state, campuses: newCampuses}
     }
     case UPDATED_STUDENT: {
-      const updatedStudents = state.students.map( (student) => {
-        if ( student.id === action.id ) {
-          return {...student, ...action.body}
+      const updatedStudents = state.students.map( (stu) => {
+        if ( stu.id == action.student.id ) {
+          return {...stu, ...action.student}
         }
-        return student
+        return stu
       })
       return {...state, students: updatedStudents}
     }
     case UPDATED_CAMPUS: {
       const updatedCampuses = state.campuses.map( (campus) => {
-        if ( campus.id == action.id ) {
+        if ( campus.id == action.body.id ) {
           return {...campus, ...action.body}
         }
         return campus
