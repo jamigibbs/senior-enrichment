@@ -24,10 +24,10 @@ export class CampusChange extends Component {
   render(){
     const { campuses } = this.props;
     return (
-      <div>
+      <div className="campus-change">
         <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
           <fieldset>
-            <label htmlFor="campus">Campus</label>
+            <label htmlFor="campus">Change Campus</label>
             <select value={this.state.campusId} name="campusId">
               <option value="-">-</option>
               {
@@ -36,7 +36,7 @@ export class CampusChange extends Component {
                 })
               }
             </select>
-            <input className="button-primary" type="submit" value="Change Campus" />
+            <input className="button-primary" type="submit" value="Submit" />
           </fieldset>
         </form>
       </div>

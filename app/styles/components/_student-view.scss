@@ -1,0 +1,27 @@
+#student-view {
+  .student-card {
+    width: 500px;
+    margin: 0 auto;
+    img {
+      width: 100%;
+    }
+  }
+  .campus-card {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 50px;
+    .button {
+      font-size: 12px;
+    }
+    .actions {
+      margin-top: 75px;
+    }
+  }
+  .campus-change {
+    width: 500px;
+    margin: 0 auto;
+    label {
+      font-weight: 300;
+    }
+  }
+}

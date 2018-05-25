@@ -21,11 +21,11 @@ const CampusCard = (props) => {
             <img src={campus.imageUrl} />
           </div>
 
-          <div className="column column-50">
+          <div className="column column-50 campus-info">
             {
                 props.showDetails === 'true' ? (
                   <div className="content-area">
-                    <h3>{campus.name}</h3>
+                    <h3 className="campus-name">{campus.name}</h3>
                     <p>Students: {studentCount}</p>
                     {
                       props.showDetails === 'true' &&

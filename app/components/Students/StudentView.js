@@ -35,7 +35,7 @@ export class StudentView extends Component {
     const campus = this.props.campus(student.campusId)
 
     return (
-      <div>
+      <div id="student-view">
         <StudentCard student={student} campus={campus} showDetails="true" />
         {
           campus ? (
