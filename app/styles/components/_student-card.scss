@@ -4,8 +4,19 @@
   background-color: $background-color-light;
   padding: 10px;
   position: relative;
-  a {
+  .student-info {
+    clear: both;
+    padding-top: 20px;
+  }
+  h3 {
     font-size: 18px;
+  }
+  h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  a {
     &.button {
       font-size: 12px;
     }
